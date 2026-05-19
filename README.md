@@ -1,176 +1,132 @@
-# 🔐 AuthentiQ  
-### Digital Trust for Academic Identity
+<div align="center">
 
-AuthentiQ is a **DigiLocker-inspired but trust-minimized certificate verification platform** that enables institutions to issue cryptographically verifiable certificates and allows anyone to instantly verify authenticity using **file-based hashing**.
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=AuthentiQ&fontSize=56&fontColor=fff&animation=twinkling&fontAlignY=38&desc=Cryptographic%20Certificate%20Verification%20Platform&descSize=16&descColor=fff&descAlignY=60" />
 
-Unlike traditional document lockers, AuthentiQ focuses on **tamper detection**, **decentralized verification logic**, and **zero-trust validation**, making it ideal for academic and institutional use cases.
+<br/>
 
----
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com)
+[![SHA256](https://img.shields.io/badge/SHA--256-Cryptography-FF6B6B?style=for-the-badge)](https://en.wikipedia.org/wiki/SHA-2)
 
-## 🚀 Key Features
+![License](https://img.shields.io/badge/License-MIT-00d4ff?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![PRs](https://img.shields.io/badge/PRs-Welcome-7c3aed?style=flat-square)
 
-### 🎓 Certificate Issuance (College Portal)
-- Upload academic certificates (**PDF / JPG / PNG**)
-- Cryptographic **SHA-256 hash generation**
-- Metadata binding:
-  - Student name  
-  - Register number  
-  - Institution  
-  - Issue date
-- Secure storage in **MongoDB with indexed hash lookup**
-- **Duplicate prevention** using hash-level uniqueness
+</div>
 
 ---
 
-### ✅ Certificate Verification (Verifier Portal)
-- File-based verification (**no manual hash input**)
-- Instant authenticity check:
-  - **VERIFIED** → Certificate exists & untampered  
-  - **TAMPERED** → Hash not found or modified  
-  - **ERROR** → Invalid request or system issue
-- Deterministic backend responses (**always valid JSON**)
+## 🔐 What is AuthentiQ?
+
+**AuthentiQ** is a trust-minimized certificate verification platform that lets institutions issue cryptographically verifiable academic credentials. Anyone can verify a certificate's authenticity instantly — no blockchain, no third-party trust required.
+
+> Verify in seconds. Tamper-proof by design. No intermediaries needed.
 
 ---
 
-## 🛡️ Trust-First Design
-- No reliance on user identity or login
-- Verification works without knowing the issuer
-- Frontend never decides authenticity  
-- Backend is the **single source of truth**
+## ✨ Features
+
+- 🔒 **SHA-256 Cryptographic Hashing** — Each certificate gets a unique, unforgeable hash
+- ⚡ **Instant Verification** — Anyone can verify authenticity by uploading the file
+- 🏫 **Institution Dashboard** — Issue and manage certificates at scale
+- 📜 **Bulk Issuance** — Generate and hash hundreds of certificates at once
+- 🌐 **Public Verification API** — Integrate verification into any system
+- 🔑 **Role-based Access** — Separate flows for institutions and verifiers
+- 📁 **File-based Proof** — The document itself is the proof — no QR codes needed
+- 🔄 **Tamper Detection** — Any modification to the file instantly fails verification
 
 ---
 
-## 🧠 How AuthentiQ Is Different From DigiLocker
+## 🛠️ Tech Stack
 
-| DigiLocker | AuthentiQ |
-|----------|-----------|
-| Centralized government locker | Trust-minimized verification |
-| Login-based access | File-based verification |
-| Document storage | Cryptographic proof |
-| No tamper detection | Hash-based integrity check |
-| Issuer-controlled | Verifier-independent |
-
----
-
-## 🧩 Tech Stack
-
-### Frontend
-- HTML, CSS (custom premium UI)
-- Vanilla JavaScript
-- Vite
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB Atlas
-- Mongoose ODM
-
-### Security
-- SHA-256 hashing (Web Crypto API)
-- Unique indexed hash enforcement
-- Deterministic API responses
+| Layer | Technology |
+|:---|:---|
+| **Language** | JavaScript |
+| **Backend** | Node.js, Express |
+| **Hashing** | SHA-256 (Node.js crypto module) |
+| **Database** | MongoDB |
+| **Auth** | JWT |
+| **Frontend** | HTML, CSS, Vanilla JS |
 
 ---
 
-## 🏗️ System Architecture
+## 🚀 Getting Started
 
-Certificate File
-↓
-SHA-256 Hash (Frontend)
-↓
-MongoDB (Indexed by hash)
-↓
-Verification API
-↓
-VERIFIED / TAMPERED / ERROR
+### Prerequisites
 
+- Node.js 18+
+- MongoDB (local or Atlas)
 
----
+### Installation
 
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/notshakti/AuthentiQ.git
+git clone https://github.com/shaktivijayas/AuthentiQ.git
 cd AuthentiQ
-
-
-
-2️⃣ Install dependencies
 npm install
+cp .env.example .env
+```
 
-3️⃣ Configure environment variables
-Create a .env file:
-MONGODB_URI=your_mongodb_atlas_connection_string
-PORT=5000
+### Environment Variables
 
-4️⃣ Run the project
-# Run frontend + backend together
-npm run dev:full
+```env
+MONGODB_URI=mongodb://localhost:27017/authentiq
+JWT_SECRET=your_jwt_secret
+PORT=3000
+```
 
-Frontend → http://localhost:5173
+### Run Locally
 
-Backend → http://localhost:5000
+```bash
+npm run dev    # development with nodemon
+npm start      # production server
+```
 
-Health Check → http://localhost:5000/api/health
+App runs at `http://localhost:3000`
 
-🧪 API Endpoints
-Health Check
-GET /api/health
+---
 
-Issue Certificate
-POST /api/certificates
-Body:
-{
-  "fileHash": "sha256hash",
-  "studentName": "...",
-  "registerId": "...",
-  "certName": "...",
-  "issuerName": "...",
-  "issueDate": "YYYY-MM-DD"
-}
+## 📁 Project Structure
 
-Verify Certificate
-POST /api/verify
-Body:
-{
-  "hash": "sha256hash"
-}
+```
+AuthentiQ/
+├── src/
+│   ├── controllers/      # Route handlers
+│   ├── models/           # MongoDB schemas (Certificate, Institution, User)
+│   ├── routes/           # API route definitions
+│   ├── middleware/        # Auth, error handling
+│   ├── utils/            # SHA-256 hashing helpers
+│   └── app.js            # Express app entry
+├── public/               # Frontend HTML/CSS/JS
+├── .env.example
+└── package.json
+```
 
-🛠️ Real-World Engineering Challenges Solved
-✅ MongoDB Duplicate Index Bug
+---
 
-Fixed E11000 duplicate key error
+## 🏗️ How Verification Works
 
-Cleaned stale indexes from earlier schema versions
+```
+Institution                    AuthentiQ                    Verifier
+    │                              │                            │
+    │── Upload Certificate ───────►│                            │
+    │                    SHA-256 Hash Generated                 │
+    │                    Hash stored in MongoDB                 │
+    │◄── Certificate + Hash ID ────│                            │
+    │                              │                            │
+    │                              │◄── Upload Certificate ─────│
+    │                              │    Recompute SHA-256        │
+    │                              │    Compare with stored hash │
+    │                              │── VALID / INVALID ─────────►│
+```
 
-Added controlled unique index on hash
+---
 
-📄 See: MONGODB_INDEX_CLEANUP.md
-📜 Script: fix-mongodb-indexes.js
+## 👨‍💻 Author
 
-This mirrors real production debugging, not toy projects.
+**Shakti Vijay A S** — [GitHub](https://github.com/shaktivijayas) · [LinkedIn](https://linkedin.com/in/ShakthiVijay)
 
-📈 Future Enhancements (Planned)
-
-Time-bound verification links
-
-Issuer reputation scoring
-
-QR-based offline verification
-
-Revocation support
-
-Blockchain anchoring (optional, hybrid model)
-
-Consent-based data sharing
-
-🧑‍💻 Author
-
-Shakti Vijay
-Computer Science Student
-Project: AuthentiQ – Decentralized Student Identity System
-
-⭐ If you like this project
-
-Star ⭐ the repository and feel free to fork or contribute!
+<div align="center">
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=twinkling" />
+</div>
